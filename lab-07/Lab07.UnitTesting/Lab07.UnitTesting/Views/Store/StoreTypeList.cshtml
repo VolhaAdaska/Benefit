@@ -1,0 +1,49 @@
+﻿
+@model IEnumerable<Lab07.UnitTesting.Models.StoreTypeViewModel>
+  
+@{
+    ViewBag.Title = "Store type";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container-fluid equal-cols-container text-white">
+        <div class="row equal-row">
+            <div class="col-md-3 equal-col fullscreen-element animated" data-animation="fadeInLeftBig">
+            </div>
+            <div class="col-md-6 equal-col animated" data-animation="fadeInRightBig">
+                <div class="equal-col-wrapper">
+                    <div class="equal-col-container">
+                        <div class="equal-col-content">
+                            <div class="row">
+                                <div class="col-md-10 col-md-offset-1">
+                                    <h3 class="section-title text-center nomargin text-white">STORE TYPE</h3>
+                                    <div class="divider divider-center text-white"><span></span></div>
+                                    <div class="contact-form">
+                                      
+                                        @foreach (var p in @Model)
+                                        {
+                                            <div class="col-md-4 text-center">
+                                                @Html.ActionLink(@p.Name, "StoreList", "Store", new { id = @p.Id }, new { @class = "btn btn-block btn-default button button-modern" })
+                                            </div>
+                                        }
+                                           
+                                      
+                                        <div class="contact-form-result text-center pt-10"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 equal-col fullscreen-element animated" data-animation="fadeInLeftBig">
+
+            </div>
+        </div>
+    </div>
+}
+

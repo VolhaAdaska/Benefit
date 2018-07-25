@@ -1,0 +1,50 @@
+﻿
+@model IEnumerable<Lab07.UnitTesting.Models.StoreViewModel>
+
+@{
+    ViewBag.Title = "Store";
+}
+
+<div class="container-fluid equal-cols-container text-white">
+    <div class="row equal-row">
+        <div class="col-md-4 equal-col fullscreen-element animated" data-animation="fadeInLeftBig">
+        </div>
+        <div class="col-md-4 equal-col animated" data-animation="fadeInRightBig">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="text-center" scope="colgroup">Name</th>
+                        <th class="text-center" scope="colgroup">Promocode </th>
+                        <th class="text-center" scope="colgroup"> </th>
+                    </tr>
+                </thead>
+                <colgroup>
+                    <col class="col-md-1">
+                    <col class="col-md-1">
+                    <col class="col-md-1">
+                </colgroup>
+                <tbody>
+                    @foreach (var p in @Model)
+                    {
+                        <tr>
+                            <td class="text-center">
+                                @p.Name
+                            </td>
+                            <td class="text-center">
+                                @p.Promocode
+                            </td>
+
+                            <td class="text-center">
+                                @Html.ActionLink("Edit", "UpdateStore", "StoreAdmin", new { id = p.Id, storeTypeId = p.StoreTypeId, StoreTypeList = p.StoreTypeList}, new { @class = "btn btn-light active text-white" })
+                                @Html.ActionLink("Delete", "DeleteStore", "StoreAdmin", new { id = p.Id }, new { @class = "btn btn-light active text-white" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4 equal-col fullscreen-element animated" data-animation="fadeInLeftBig">
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,45 @@
+﻿
+@model IEnumerable<Lab07.UnitTesting.Models.StoreViewModel>
+
+@{
+    ViewBag.Title = "Store";
+}
+
+
+@Html.AntiForgeryToken()
+
+<div class="container-fluid equal-cols-container text-white">
+    <div class="row equal-row">
+        <div class="col-md-2 equal-col fullscreen-element animated" data-animation="fadeInLeftBig">
+        </div>
+        <div class="col-md-8 equal-col animated" data-animation="fadeInRightBig">
+            <table class="table table-bordered ">
+                <thead>
+                    <tr>
+                        <th class="text-center" scope="col">Name</th>
+                        <th class="text-center" scope="col">Promocode</th>
+                      
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var p in @Model)
+                    {
+                        <tr>
+                            <td class="text-center">
+                                @p.Name
+                            </td>
+                            <td class="text-center">
+                                @p.Promocode
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-2 equal-col fullscreen-element animated" data-animation="fadeInLeftBig">
+        </div>
+    </div>
+</div>
+
+
+

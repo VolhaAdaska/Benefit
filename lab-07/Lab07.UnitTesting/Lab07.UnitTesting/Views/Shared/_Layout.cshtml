@@ -1,0 +1,161 @@
+﻿@using Lab07.UnitTesting.DAL.Core
+@{
+    var isAuthenticated = User.Identity.IsAuthenticated;
+    var isAdmin = false;
+
+    if (isAuthenticated)
+    {
+        isAdmin = User.IsInRole(UserRoles.Admin);
+    }
+
+}
+
+<!DOCTYPE html>
+<html class="no-js" lang="en-US">
+<head>
+
+    <title>@ViewBag.Title</title>
+
+    <!-- META DATA -->
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="Erilisdesign.com">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/css/style.css">
+    <link rel="stylesheet" href="~/Content/css/custom.css">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="~/Content/css/jquery.fullpage.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/vegas.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/ionicons.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/animate.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/flexslider.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+    <!-- FONTS -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700%7CRaleway:400,200,300,500' rel='stylesheet' type='text/css'>
+
+    <!-- JS -->
+    <script type="text/javascript" src="~/Scripts/js/modernizr.js"></script>
+
+    <!-- FAVICONS -->
+    <link rel="shortcut icon" href="~/Content/img/favicon.png">
+
+</head>
+<body>
+
+    <div id="preloader">
+        <div id="loading-animation">&nbsp;</div>
+    </div>
+
+    <nav class="navbar navbar-fixed-top">
+        <div class="container-fluid">
+            <div id="navbar" class="navbar-collapse collapse">
+
+                <ul id="fp-menu" class="nav navbar-nav navbar-right">
+
+                    <li data-menuanchor="home">
+                        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+
+                    @if (!isAuthenticated)
+                    {
+                        <li data-menuanchor="signIn">
+                            @Html.ActionLink("Sign In", "Login", "Account", null, new { @class = "nav-link" })
+                        </li>
+                        <li data-menuanchor="register">
+                            @Html.ActionLink("Register", "Register", "Account", null, new { @class = "nav-link" })
+                        </li>
+                    }
+                    else
+                    {
+                        if (isAdmin)
+                        {
+                            <li data-menuanchor="store">
+                                @Html.ActionLink("Store", "StoreTypeList", "StoreTypeAdmin", new { area = "Admin" }, null)
+                            </li>
+
+                            <li data-menuanchor="dropdownCreate">
+                                <a class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                                    Create
+                                    <i class="fa fa-caret-square-o-down"></i>
+                                </a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    @Html.ActionLink("Create store type", "AddStoreType", "StoreTypeAdmin", new { area = "Admin" }, new { @class = "dropdown-item text-dark" }) <br>
+                                    @Html.ActionLink("Create store", "AddStore", "StoreAdmin", new { area = "Admin" }, new { @class = "dropdown-item  text-dark" })
+                                </div>
+                            </li>
+
+                        }
+                        else
+                        {
+                            <li data-menuanchor="store">
+                                @Html.ActionLink("Store", "StoreTypeList", "Store", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                        }
+
+                        <li data-menuanchor="signOut">
+                            @Html.ActionLink("Sign Out", "Logout", "Account", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                    }
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+        <div class="navbar-overlay"></div>
+    </nav>
+
+    <div class="main-container">
+        <div id="bt-fullpage">
+            <div data-element-id="home" class="bt-section">
+                <section class="section home-section fullscreen-element">
+                    <div class="overlay">
+                        <div class="overlay-wrapper">
+                            <div class="overlay-inner cover-background" id="bg-block"></div>
+                            <div class="overlay-inner background-dark opacity-30"></div>
+                        </div>
+                    </div>
+                    @RenderBody()
+                </section>
+            </div>
+            <!-- Footer -->
+            <footer class="site-footer">
+                <div class="section-container">
+                    <!-- Copyright -->
+                    <div class="copyright">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-6 text-left">
+                                    © 2018 <a href="http://gcp.godeltech.com/people/personDetails/780/generalInfo"> Volha Adaska </a>
+                                </div>
+                                <div class="col-md-6">
+                                    <nav class="socials-icons pull-right">
+                                        <ul>
+                                            @*<li><a href="https://en-gb.facebook.com/godeltech/" class="social-icon"><i class="ion-social-facebook"></i></a></li>
+                                                <li><a href="https://twitter.com/GodelTech" class="social-icon"><i class="ion-social-twitter"></i></a></li>
+                                                <li><a href="https://www.instagram.com/godel_technologies/" class="social-icon"><i class="ion-social-instagram"></i></a></li>*@
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- .copyright end -->
+                </div>
+            </footer><!-- .site-footer end -->
+        </div><!-- #fullpage end -->
+    </div><!-- .main-container end -->
+    <!-- JS -->
+    <script type="text/javascript" src="~/Scripts/js/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/plugins.js"></script>
+
+    <script type="text/javascript" src="~/Scripts/js/main.js"></script>
+
+</body>
+</html>

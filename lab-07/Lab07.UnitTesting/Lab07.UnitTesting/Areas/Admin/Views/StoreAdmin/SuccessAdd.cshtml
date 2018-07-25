@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Success";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container-fluid equal-cols-container text-white">
+        <div class="row equal-row">
+            <div class="col-md-3 equal-col fullscreen-element animated" data-animation="fadeInLeftBig">
+            </div>
+            <div class="col-md-6 equal-col animated" data-animation="fadeInRightBig">
+                <div class="equal-col-wrapper">
+                    <div class="equal-col-container">
+                        <div class="equal-col-content">
+                            <div class="row">
+                                <div class="col-md-10 col-md-offset-1">
+                                    <h3 class="section-title text-center nomargin text-white">Successfully added</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
